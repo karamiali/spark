@@ -31,7 +31,7 @@ object Run extends App {
       .read.json(files_semaine)
       .filter(col("fields.status").contains("OPEN"))
       .select("fields")
-      .drop("fields.position")
+      .drop("fields.position");
       
   val data_pre_aggregated_s = data_semaine
       .groupBy("fields.number")
