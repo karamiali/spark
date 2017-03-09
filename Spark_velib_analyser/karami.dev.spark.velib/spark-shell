@@ -1,0 +1,13 @@
+
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.DataFrame
+import org.apache.spark._
+import sys.process._
+
+
+val files_weekend = "file:///home/karami/Drive/DEV/spark/data/velib/weekend/*.json";
+
+
+val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+
+val data_weekend = sqlContext.read.json(files_weekend).filter(col("fields.status").contains("OPEN") && col("fields.address").contains("92110")).select("fields.*").show
